@@ -6,12 +6,16 @@ import {
   Typography,
   CardActionArea
 } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const PlaceCard = ({ place }) => {
+  const history = useHistory();
   return (
     <div>
       <Card elevation={3}>
-        <CardActionArea onClick={() => console.log(place.id)}>
+        <CardActionArea
+          onClick={() => history.push(`/places/${place.id}`, place.id)}
+        >
           <CardHeader title={place.name} />
           <CardContent>
             <Typography>Business ID: {place.id}</Typography>
