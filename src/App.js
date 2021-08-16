@@ -2,7 +2,7 @@ import { Container } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./views/HomePage";
-import SinglePlacePage from "./views/SinglePlace";
+import PlaceDetails from "./views/PlaceDetails";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Switch>
         <Container className="App">
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/places/:id" component={SinglePlacePage} />
+          <Route exact path="/places/:id" component={PlaceDetails} />
         </Container>
       </Switch>
     </Router>
