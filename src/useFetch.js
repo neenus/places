@@ -8,8 +8,9 @@ const useFetch = endpoint => {
 
   const API_BASE_URL = "https://610bb7502b6add0017cb3a35.mockapi.io/api/v1";
   useEffect(() => {
+    const source = axios.CancelToken.source();
     axios
-      .get(`${API_BASE_URL}/${endpoint}`)
+      .get(`${API_BASE_URL}/${endpoint}`, { cancelToken: source.token })
       .then(data => {
         setData(data.data);
         setIsLoading(false);
@@ -20,6 +21,8 @@ const useFetch = endpoint => {
         setData(null);
         err.message ? setError(err.message) : setError(null);
       });
+    // cleanup function in case component is ummounted before axios call is finished
+    return () => source.cancel();
   }, [endpoint]);
   return { data, isLoading, error };
 };
